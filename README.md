@@ -33,3 +33,7 @@ Simple to do list application that allows the user to create their own account a
    ```
    npm start
    ```
+
+## Deployment
+   This app is also deployed on vercel:
+   https://wads-todolist-8oj2-8pe0qbhb8-frahyangs-projects.vercel.app/
