@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { db, auth } from './firebase';
 import { collection, deleteDoc, doc, getDocs, query, where, updateDoc } from 'firebase/firestore';
-import { onAuthStateChanged, setPersistence, browserLocalPersistence, signOut } from 'firebase/auth';
 import NavBar from './components/NavBar';
 import Task from './components/Task';
 import AddTask from './components/AddTask';
+import RemoveTask from './components/RemoveTask';
 import EditTask from './components/EditTask';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -20,25 +20,6 @@ export default function App() {
   const [hasLoadedTasks, setHasLoadedTasks] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("All");
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setPersistence(auth, browserLocalPersistence)
-      .catch(error => console.error("Error setting persistence:", error));
-
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-        navigate('/todolist');
-      } else {
-        setIsLoggedIn(false);
-        navigate('/login');
-      }
-    });
-
-    return () => unsubscribe();
-  }, [navigate]);
 
   useEffect(() => {
     if (isLoggedIn && !hasLoadedTasks) {
@@ -109,16 +90,10 @@ export default function App() {
     setFilteredTasks(filtered);
   };
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      setIsLoggedIn(false);
-      setTasks([]);
-      setHasLoadedTasks(false);
-      navigate('/login');
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setTasks([]);
+    setHasLoadedTasks(false);
   };
 
   return (
