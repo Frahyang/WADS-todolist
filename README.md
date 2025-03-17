@@ -11,8 +11,6 @@ Simple to do list application that allows the user to create their own account a
 2. Install required files
    ```
    npm i
-   npm i firebase
-   npm i react-router-dom
    ```
 3. Create an .env.local file to connect your firebase account and enter the following code inside the file
    ```
