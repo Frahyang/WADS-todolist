@@ -1,0 +1,119 @@
+h3, p {
+  color: whitesmoke;
+}
+
+.task-container {
+  margin: 20px auto 0px auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  transition: opacity 0.4s;
+}
+
+.text-container {
+  width: 750px;
+  display: flex;
+  background-color: gray;
+  border-style: solid;
+  border-color: whitesmoke;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  word-break: break-word;
+}
+
+.title, .description {
+  margin: 0px 30px 0px 30px;
+}
+
+.edit > button, .delete > button {
+  border-style: none;
+  background-color: darkgray;
+  color: whitesmoke;
+  width: 35px;
+  height: 35px;
+  border-radius: 1000px;
+  cursor: pointer;
+}
+
+.edit, .delete {
+  border-style: solid;
+  border-color: whitesmoke;
+  background-color: gray;
+  width: 35px;
+  margin-left: 20px;
+  height: 35px;
+  border-radius: 1000px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.delete {
+  margin-top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.delete.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.check-box {
+  display: block;
+  position: relative;
+  margin: 35px 20px auto 20px;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+}
+
+.check-box input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: whitesmoke;
+  transition: background-color 0.4s, transform 0.4s;
+}
+
+.check-box:hover input ~ .checkmark {
+  background-color: darkgray;
+}
+
+.check-box input:checked ~ .checkmark {
+  background-color: black;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.check-box input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.check-box .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.task-container.checked {
+  opacity: 0.6;
+}
